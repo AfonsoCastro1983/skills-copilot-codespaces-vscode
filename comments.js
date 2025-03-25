@@ -2,6 +2,12 @@ const http = require('http');
 const fs = require('fs').promises; // Usando promises para leitura de arquivos
 const path = require('path');
 
+// Verifica se todas as variáveis de ambiente necessárias estão definidas
+if (!process.env.PORT) {
+    console.error('Erro: A variável de ambiente PORT não está definida.');
+    process.exit(1);
+}
+
 // Cria o servidor HTTP
 const server = http.createServer(async (req, res) => {
     if (req.method === 'GET' && req.url === '/') {
@@ -25,9 +31,10 @@ const server = http.createServer(async (req, res) => {
     }
 });
 
-// Cria o servidor web e o inicia na porta 3000
-server.listen(3000, () => {
-    console.log('Server is listening on port 3000');
+// Cria o servidor web e o inicia na porta definida pela variável de ambiente PORT
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
+    console.log(`Server is listening on port ${port}`);
 });
 
 

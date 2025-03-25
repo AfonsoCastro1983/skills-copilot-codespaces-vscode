@@ -25,7 +25,7 @@ const server = http.createServer(async (req, res) => {
     }
 });
 
-// Inicia o servidor na porta 3000
+// Cria o servidor web e o inicia na porta 3000
 server.listen(3000, () => {
     console.log('Server is listening on port 3000');
 });
